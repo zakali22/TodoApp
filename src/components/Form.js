@@ -13,10 +13,18 @@ class Form extends Component {
     });
   };
 
+  onSubmit = evt => {
+    evt.preventDefault();
+    this.props.onSubmit(this.state.value);
+    this.setState({
+      value: ""
+    });
+  };
+
   render() {
     return (
       <div className="form">
-        <form>
+        <form onSubmit={this.onSubmit}>
           <input
             id="add_todo"
             className="form__input"

@@ -16,10 +16,12 @@ class Form extends Component {
   onSubmit = evt => {
     console.log(evt);
     evt.preventDefault();
-    this.props.onSubmit(this.state.value);
-    this.setState({
-      value: ""
-    });
+    if (this.state.value) {
+      this.props.onSubmit(this.state.value);
+      this.setState({
+        value: ""
+      });
+    }
   };
 
   render() {

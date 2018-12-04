@@ -11,7 +11,7 @@ class App extends Component {
   onSubmitHandler = value => {
     const todos = [...this.state.todos];
     const todo = {
-      createdAt: moment().format("MMM Do YY"),
+      createdAt: moment().calendar(),
       title: value
     };
     this.setState({
@@ -23,8 +23,17 @@ class App extends Component {
     return (
       <div className="main">
         <div className="main__container">
-          <List todos={this.state.todos} />
-          <Form onSubmit={this.onSubmitHandler} />
+          <div className="main__welcome">
+            <h2>Good Morning, Zack</h2>
+            <span className="main__welcome--time">
+              <p>Its Friday, September 21, 2018</p>
+              <p>12:45am</p>
+            </span>
+          </div>
+          <div className="main__todo">
+            <Form onSubmit={this.onSubmitHandler} />
+            <List todos={this.state.todos} />
+          </div>
         </div>
       </div>
     );

@@ -1,73 +1,84 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Lato", sans-serif;
+  background: #20252b;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .main {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
   &__container {
-    border: 1px solid green;
+    border: 1px solid white;
     width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  &__welcome {
+    margin-right: 5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    &--time {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      p {
+        color: white;
+        margin: 0.2rem;
+        font-weight: 100;
+        font-family: "Lato", sans-serif;
+      }
+    }
+  }
+  &__todo {
+    background-color: #35424b;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
   }
 }
 
 .form {
-  border: 1px solid red;
-  padding: 1.5rem 1rem;
+  width: 100%;
   form {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    position: relative;
-  }
-  &__label {
-    position: absolute;
-    top: 0.8rem;
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-    font-size: 1rem;
-    margin-left: 0.4rem;
+    align-items: center;
   }
   &__input {
-    margin: 1rem 0;
-    padding: 0.6rem 0.3rem;
-    border-radius: 0.3rem;
-    border: 1px solid #2196f3;
-    width: 40%;
+    background-color: #42535d;
+    outline: none;
+    border: 1px solid #42535d;
+    padding: 0.3rem 0.6rem;
+    border-radius: 15px;
+    margin-right: 1rem;
+    width: 80%;
+    box-shadow: 0 0 0.2rem #151a1e;
     &::placeholder {
-      font-size: 0.9rem;
-      transition: all 0.3s ease-in-out;
-    }
-    &:focus {
-      outline: none;
-      &::placeholder {
-        transform: translateY(-1.8rem);
-        opacity: 0;
-      }
+      color: #596f7e;
     }
   }
   &__button {
-    border: 1px solid #2196f3;
     background: none;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
+    color: white;
+    border: none;
+    font-size: 2rem;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      background: #2196f3;
-      color: white;
-    }
-  }
-  .form__input:focus ~ .form__label {
-    opacity: 1;
-    top: -0.5rem;
   }
 }

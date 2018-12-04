@@ -14,6 +14,7 @@ class Form extends Component {
   };
 
   onSubmit = evt => {
+    console.log(evt);
     evt.preventDefault();
     this.props.onSubmit(this.state.value);
     this.setState({
@@ -32,10 +33,9 @@ class Form extends Component {
             onChange={this.onChange}
             placeholder="Add a todo"
           />
-          <label className="form__label" htmlFor="add_todo">
-            Add a todo
-          </label>
-          <button className="form__button">Add</button>
+          <button onClick={this.onSubmit} className="form__button">
+            &#43;
+          </button>
         </form>
       </div>
     );

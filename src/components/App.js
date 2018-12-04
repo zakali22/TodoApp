@@ -19,6 +19,13 @@ class App extends Component {
     });
   };
 
+  onDeleteHandler = id => {
+    const index = id;
+    this.setState({
+      todos: this.state.todos.filter((todo, i) => i !== id)
+    });
+  };
+
   render() {
     return (
       <div className="main">
@@ -32,7 +39,7 @@ class App extends Component {
           </div>
           <div className="main__todo">
             <Form onSubmit={this.onSubmitHandler} />
-            <List todos={this.state.todos} />
+            <List todos={this.state.todos} onDelete={this.onDeleteHandler} />
           </div>
         </div>
       </div>

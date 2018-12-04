@@ -2,16 +2,24 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class List extends Component {
+  onDelete = id => {
+    this.props.onDelete(id);
+  };
   render() {
     const lists = this.props.todos.map((todo, i) => {
       return (
         <li className="list__created--item" key={i}>
           <h4>{todo.title}</h4>
           <input type="radio" id={i} />
-          <label for={i}>
+          <label htmlFor={i}>
             <span />
           </label>
-          <span className="list__created--item_delete">&#10005;</span>
+          <span
+            className="list__created--item_delete"
+            onClick={this.onDelete.bind(this, i)}
+          >
+            &#10005;
+          </span>
         </li>
       );
     });

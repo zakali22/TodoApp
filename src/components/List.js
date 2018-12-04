@@ -21,6 +21,9 @@ class List extends Component {
           <h3>Today's focal points</h3>
           <ul>{lists}</ul>
         </div>
+        <div className="list__completed">
+          <h3>Completed</h3>
+        </div>
       </div>
     );
   }

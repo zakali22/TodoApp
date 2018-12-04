@@ -86,7 +86,8 @@ body {
 }
 
 .list {
-  &__created {
+  &__created,
+  &__completed {
     display: flex;
     flex-direction: column;
     h3 {

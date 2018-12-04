@@ -5,18 +5,22 @@ class List extends Component {
   render() {
     const lists = this.props.todos.map((todo, i) => {
       return (
-        <li className="list__item" key={i}>
-          <div className="list__item--left">
-            <h4>{todo.title}</h4>
-            <p>{todo.createdAt}</p>
-          </div>
-          <span>&times;</span>
+        <li className="list__created--item" key={i}>
+          <h4>{todo.title}</h4>
+          <input type="radio" id={i} />
+          <label for={i}>
+            <span />
+          </label>
+          <span className="list__created--item_delete">&#10005;</span>
         </li>
       );
     });
     return (
       <div className="list">
-        <ul>{lists}</ul>
+        <div className="list__created">
+          <h3>Today's focal points</h3>
+          <ul>{lists}</ul>
+        </div>
       </div>
     );
   }

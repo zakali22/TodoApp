@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import EditForm from "./EditForm";
+import ListItem from "./ListItem";
+import ListItemComplete from "./ListItemComplete";
 
 class List extends Component {
   state = {
@@ -9,6 +11,9 @@ class List extends Component {
   };
   onDelete = id => {
     this.props.onDelete(id);
+  };
+  onDeleteComplete = id => {
+    this.props.onDeleteComplete(id);
   };
   onEdit = id => {
     console.log(id);
@@ -25,7 +30,22 @@ class List extends Component {
     });
   };
 
+  addToComplete = id => {
+    this.props.addToComplete(id);
+  };
+
   render() {
+    const completedList = this.props.completedTodos
+      ? this.props.completedTodos.map((todo, i) => {
+          return (
+            <ListItemComplete
+              id={i}
+              todo={todo}
+              onDeleteComplete={this.onDeleteComplete}
+            />
+          );
+        })
+      : null;
     const lists = this.props.todos.map((todo, i) => {
       return (
         <Fragment>
@@ -36,42 +56,22 @@ class List extends Component {
                 onSubmit={this.onEditHandler.bind(this, i)}
               />
             ) : (
-              <li className="list__created--item" key={i}>
-                <h4>{todo.title}</h4>
-                <i
-                  class="far fa-edit list__created--item_edit"
-                  onClick={this.onEdit.bind(this, i)}
-                />
-                <input type="radio" id={i} className="radio_input" />
-                <label htmlFor={i}>
-                  <span />
-                </label>
-                <span
-                  className="list__created--item_delete"
-                  onClick={this.onDelete.bind(this, i)}
-                >
-                  &#10005;
-                </span>
-              </li>
+              <ListItem
+                todo={todo}
+                onEdit={this.onEdit}
+                id={i}
+                onDelete={this.onDelete}
+                addToComplete={this.addToComplete}
+              />
             )
           ) : (
-            <li className="list__created--item" key={i}>
-              <h4>{todo.title}</h4>
-              <i
-                class="far fa-edit list__created--item_edit"
-                onClick={this.onEdit.bind(this, i)}
-              />
-              <input type="radio" id={i} className="radio_input" />
-              <label htmlFor={i}>
-                <span />
-              </label>
-              <span
-                className="list__created--item_delete"
-                onClick={this.onDelete.bind(this, i)}
-              >
-                &#10005;
-              </span>
-            </li>
+            <ListItem
+              todo={todo}
+              onEdit={this.onEdit}
+              id={i}
+              onDelete={this.onDelete}
+              addToComplete={this.addToComplete.bind(this, i)}
+            />
           )}
         </Fragment>
       );
@@ -84,6 +84,7 @@ class List extends Component {
         </div>
         <div className="list__completed">
           <h3>Completed</h3>
+          <ul>{completedList}</ul>
         </div>
       </div>
     );

@@ -6,7 +6,9 @@ import moment from "moment";
 
 class App extends Component {
   state = {
-    todos: []
+    todos: [],
+    completed: [],
+    time: null
   };
   onSubmitHandler = value => {
     const todos = [...this.state.todos];
@@ -26,6 +28,13 @@ class App extends Component {
     });
   };
 
+  onDeleteCompleteHandler = id => {
+    const index = id;
+    this.setState({
+      completed: this.state.todos.filter((todo, i) => i !== id)
+    });
+  };
+
   onEditHandler = (index, value) => {
     const todos = this.state.todos;
     const indexEditAt = this.state.todos.find((todo, i) => i === index);
@@ -42,6 +51,27 @@ class App extends Component {
     });
   };
 
+  onCompletionHandler = id => {
+    const indexCompleteAt = this.state.todos.find((todo, i) => i == id);
+    const completedTodos = [...this.state.completed];
+    this.setState({
+      todos: this.state.todos.filter((todo, i) => i !== id),
+      completed: completedTodos.concat(indexCompleteAt)
+    });
+  };
+
+  liveClockInterval = () => {
+    setInterval(() => {
+      this.setState({
+        time: moment().format("LTS")
+      });
+    }, 1000);
+  };
+
+  componentDidMount() {
+    this.liveClockInterval();
+  }
+
   render() {
     return (
       <div className="main">
@@ -49,17 +79,29 @@ class App extends Component {
           <div className="main__welcome">
             <h2>Good Morning, Zack</h2>
             <span className="main__welcome--time">
-              <p>Its Friday, September 21, 2018</p>
-              <p>12:45am</p>
+              <p>Its {moment().format("MMMM Do YYYY")}</p>
+              <p>{this.state.time}</p>
             </span>
           </div>
           <div className="main__todo">
             <Form onSubmit={this.onSubmitHandler} />
-            <List
-              todos={this.state.todos}
-              onDelete={this.onDeleteHandler}
-              onEditHandler={this.onEditHandler}
-            />
+            {this.state.completed.length > 0 ? (
+              <List
+                todos={this.state.todos}
+                completedTodos={this.state.completed}
+                onDeleteComplete={this.onDeleteCompleteHandler}
+                onDelete={this.onDeleteHandler}
+                onEditHandler={this.onEditHandler}
+                addToComplete={this.onCompletionHandler}
+              />
+            ) : (
+              <List
+                todos={this.state.todos}
+                onDelete={this.onDeleteHandler}
+                onEditHandler={this.onEditHandler}
+                addToComplete={this.onCompletionHandler}
+              />
+            )}
           </div>
         </div>
       </div>

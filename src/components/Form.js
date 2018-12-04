@@ -17,15 +17,17 @@ class Form extends Component {
     return (
       <div className="form">
         <form>
-          <label htmlFor="add_todo">Add a todo</label>
           <input
             id="add_todo"
-            className="form_input"
+            className="form__input"
             value={this.state.value}
             onChange={this.onChange}
             placeholder="Add a todo"
           />
-          <button className="form_button">Add todo</button>
+          <label className="form__label" htmlFor="add_todo">
+            Add a todo
+          </label>
+          <button className="form__button">Add</button>
         </form>
       </div>
     );

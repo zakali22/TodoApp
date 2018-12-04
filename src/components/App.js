@@ -26,6 +26,22 @@ class App extends Component {
     });
   };
 
+  onEditHandler = (index, value) => {
+    const todos = this.state.todos;
+    const indexEditAt = this.state.todos.find((todo, i) => i === index);
+    const newTodo = {
+      ...indexEditAt,
+      title: value
+    };
+    this.setState({
+      todos: [
+        ...todos.slice(0, index),
+        newTodo,
+        ...todos.slice(index + 1, todos.length)
+      ]
+    });
+  };
+
   render() {
     return (
       <div className="main">
@@ -39,7 +55,11 @@ class App extends Component {
           </div>
           <div className="main__todo">
             <Form onSubmit={this.onSubmitHandler} />
-            <List todos={this.state.todos} onDelete={this.onDeleteHandler} />
+            <List
+              todos={this.state.todos}
+              onDelete={this.onDeleteHandler}
+              onEditHandler={this.onEditHandler}
+            />
           </div>
         </div>
       </div>

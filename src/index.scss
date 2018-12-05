@@ -17,6 +17,65 @@ html {
   }
 }
 
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .container {
+    @media only screen and (max-width: 34.375em) {
+      padding: 1.5rem;
+    }
+  }
+  &__welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0;
+      color: white;
+      @media only screen and (max-width: 40.625em) {
+        font-size: 3rem;
+      }
+      span {
+        padding-bottom: 0.4rem;
+        border-bottom: 4px solid orange;
+      }
+    }
+    p {
+      color: white;
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      @media only screen and (max-width: 34.375em) {
+        margin-top: 1.5rem;
+      }
+      span {
+        color: orange;
+      }
+    }
+  }
+  &__register {
+    align-self: flex-start;
+    button {
+      background: none;
+      border: 1px solid orange;
+      color: white;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease-in-out;
+      outline: none;
+      &:hover {
+        background: orange;
+        color: white;
+      }
+    }
+  }
+}
+
 .main {
   display: flex;
   justify-content: center;

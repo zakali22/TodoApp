@@ -9,6 +9,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "npm run start --prefix server",
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -23,6 +25,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "moment": "^2.22.2",
     "node-sass": "^4.10.0"
   }

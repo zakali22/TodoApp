@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Form extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired
+  };
   state = {
     value: ""
   };
@@ -14,7 +17,6 @@ class Form extends Component {
   };
 
   onSubmit = evt => {
-    console.log(evt);
     evt.preventDefault();
     if (this.state.value) {
       this.props.onSubmit(this.state.value);

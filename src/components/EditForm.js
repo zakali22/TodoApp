@@ -11,6 +11,10 @@ const inputStyle = {
 };
 
 class EditForm extends Component {
+  static propTypes = {
+    value: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired
+  };
   state = {
     value: this.props.value
   };

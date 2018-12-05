@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Form from "./Form";
 import List from "./List";
 import moment from "moment";
@@ -22,16 +21,14 @@ class App extends Component {
   };
 
   onDeleteHandler = id => {
-    const index = id;
     this.setState({
       todos: this.state.todos.filter((todo, i) => i !== id)
     });
   };
 
   onDeleteCompleteHandler = id => {
-    const index = id;
     this.setState({
-      completed: this.state.todos.filter((todo, i) => i !== id)
+      completed: this.state.completed.filter((todo, i) => i !== id)
     });
   };
 
@@ -52,7 +49,7 @@ class App extends Component {
   };
 
   onCompletionHandler = id => {
-    const indexCompleteAt = this.state.todos.find((todo, i) => i == id);
+    const indexCompleteAt = this.state.todos.find((todo, i) => i === id);
     const completedTodos = [...this.state.completed];
     this.setState({
       todos: this.state.todos.filter((todo, i) => i !== id),

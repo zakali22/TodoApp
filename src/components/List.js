@@ -5,6 +5,24 @@ import ListItem from "./ListItem";
 import ListItemComplete from "./ListItemComplete";
 
 class List extends Component {
+  static propTypes = {
+    todos: PropTypes.arrayOf(
+      PropTypes.shape({
+        createdAt: PropTypes.string,
+        title: PropTypes.string
+      })
+    ).isRequired,
+    completedTodos: PropTypes.arrayOf(
+      PropTypes.shape({
+        createdAt: PropTypes.string,
+        title: PropTypes.string
+      })
+    ),
+    onDeleteComplete: PropTypes.func,
+    onDelete: PropTypes.func.isRequired,
+    onEditHandler: PropTypes.func.isRequired,
+    addToComplete: PropTypes.func.isRequired
+  };
   state = {
     isEditing: false,
     editId: 0
@@ -39,16 +57,17 @@ class List extends Component {
       ? this.props.completedTodos.map((todo, i) => {
           return (
             <ListItemComplete
+              key={i}
               id={i}
               todo={todo}
-              onDeleteComplete={this.onDeleteComplete}
+              onDeleteComplete={this.onDeleteComplete.bind(this, i)}
             />
           );
         })
       : null;
     const lists = this.props.todos.map((todo, i) => {
       return (
-        <Fragment>
+        <Fragment key={i}>
           {this.state.isEditing ? (
             this.state.editId === i ? (
               <EditForm
@@ -58,18 +77,18 @@ class List extends Component {
             ) : (
               <ListItem
                 todo={todo}
-                onEdit={this.onEdit}
+                onEdit={this.onEdit.bind(this, i)}
                 id={i}
-                onDelete={this.onDelete}
-                addToComplete={this.addToComplete}
+                onDelete={this.onDelete.bind(this, i)}
+                addToComplete={this.addToComplete.bind(this, i)}
               />
             )
           ) : (
             <ListItem
               todo={todo}
-              onEdit={this.onEdit}
+              onEdit={this.onEdit.bind(this, i)}
               id={i}
-              onDelete={this.onDelete}
+              onDelete={this.onDelete.bind(this, i)}
               addToComplete={this.addToComplete.bind(this, i)}
             />
           )}

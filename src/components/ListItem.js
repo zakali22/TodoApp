@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 const ListItem = ({ id, todo, onEdit, onDelete, addToComplete }) => {
   return (
     <Fragment>
-      <li className="list__created--item" key={id}>
+      <li className="list__created--item">
         <h4>{todo.title}</h4>
         <i
-          class="far fa-edit list__created--item_edit"
+          className="far fa-edit list__created--item_edit"
           onClick={() => {
-            onEdit(id);
+            onEdit();
           }}
         />
         <input type="radio" id={id} className="radio_input" />
@@ -23,7 +23,7 @@ const ListItem = ({ id, todo, onEdit, onDelete, addToComplete }) => {
         <span
           className="list__created--item_delete"
           onClick={() => {
-            onDelete(id);
+            onDelete();
           }}
         >
           &#10005;
@@ -31,6 +31,17 @@ const ListItem = ({ id, todo, onEdit, onDelete, addToComplete }) => {
       </li>
     </Fragment>
   );
+};
+
+ListItem.propTypes = {
+  todo: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired
+  }).isRequired,
+  onEdit: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  addToComplete: PropTypes.func.isRequired
 };
 
 export default ListItem;

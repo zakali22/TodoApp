@@ -27,6 +27,7 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "moment": "^2.22.2",
-    "node-sass": "^4.10.0"
+    "node-sass": "^4.10.0",
+    "react-router-dom": "^4.3.1"
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class Homepage extends Component {
   render() {
@@ -11,12 +12,14 @@ class Homepage extends Component {
               Organize your tasks with simple <span>todos</span>
             </h1>
             <p>
-              No more fancy and hard to navigate UI's.{" "}
-              <span>Just todo it.</span>
+              No more fancy and hard to navigate UI's. <span>Just todo it</span>
+              .
             </p>
           </div>
           <div className="homepage__register">
-            <button>Get started</button>
+            <Link to="/get-started">
+              <button>Get started</button>
+            </Link>
           </div>
         </div>
       </div>

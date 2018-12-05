@@ -1,4 +1,9 @@
 $lightgrey: #c8c8c8;
+$text-color: #4a4a4a;
+$facebook-color: #465e97;
+$facebook-hover: #2d4c96;
+$google-color: #4385f5;
+$google-hover: #1365f1;
 
 body {
   margin: 0;
@@ -76,8 +81,106 @@ html {
   }
 }
 
+.getstarted {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .container {
+    background-color: white;
+    width: 70%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    &__register {
+      display: flex;
+    }
+  }
+  h1 {
+    color: $text-color;
+    align-self: center;
+  }
+  &__social {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    &--facebook,
+    &--google {
+      margin: 0.7rem 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      button {
+        outline: none;
+        cursor: pointer;
+        min-width: 60%;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        border-radius: 0.3125rem;
+        color: white;
+        font-family: "Roboto", sans-serif;
+        p {
+          margin: 0;
+          font-size: 1rem;
+        }
+      }
+    }
+    &--facebook {
+      button {
+        background: $facebook-color;
+        border: 1px solid $facebook-color;
+        transition: all 0.1s ease-in-out;
+        i {
+          font-size: 2.5rem;
+          margin: 0.2rem 0;
+          margin-right: auto;
+        }
+        &:hover {
+          background: $facebook-hover;
+          border: 1px solid $facebook-hover;
+        }
+      }
+    }
+    &--google {
+      button {
+        background: $google-color;
+        border: 1px solid $google-color;
+        transition: all 0.1s ease-in-out;
+        img {
+          width: 2.2rem;
+          height: 2.2rem;
+          margin: 0.2rem 0;
+          margin-right: auto;
+          border: 1px solid white;
+          border-radius: 0.2125rem;
+        }
+        &:hover {
+          background-color: $google-hover;
+          border: 1px solid $google-hover;
+        }
+      }
+    }
+  }
+  &__local {
+    height: 100%;
+    border-left: 1px solid $text-color;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;

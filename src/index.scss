@@ -7,6 +7,16 @@ body {
   font-family: "Ubuntu", sans-serif;
 }
 
+html {
+  // 1rem = 16px
+  @media only screen and (max-width: 62.5em) {
+    font-size: 81.25%; // 1rem = 13px
+  }
+  @media only screen and (max-width: 50em) {
+    font-size: 62.5%; // 1rem = 10px
+  }
+}
+
 .main {
   display: flex;
   justify-content: center;
@@ -18,6 +28,11 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    @media only screen and (max-width: 38.125em) {
+      flex-direction: column;
+      padding: 0;
+      width: 100%;
+    }
   }
   &__welcome {
     margin-right: 5rem;
@@ -26,10 +41,19 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media only screen and (max-width: 38.125em) {
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
     h2 {
       font-size: 2.5rem;
       color: white;
       margin-bottom: 0.5rem;
+    }
+    p {
+      @media only screen and (max-width: 50em) {
+        font-size: 1.3rem;
+      }
     }
     &--time {
       display: flex;

@@ -23,8 +23,9 @@ module.exports = app => {
     }
   );
   app.get("/auth/current_user", (req, res) => {
+    console.log(`here is the actual request object user ${req.user}`);
     if (req.user) {
-      res.send(req.user);
+      res.json(req.user);
     }
   });
   app.get("/auth/logout", (req, res) => {

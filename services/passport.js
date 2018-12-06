@@ -14,6 +14,7 @@ passport.serializeUser((user, done) => {
 // Deserialization
 passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
+    console.log(user, id);
     done(null, user);
   });
 });
@@ -28,7 +29,6 @@ passport.use(
       proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
       User.findOne({ googleId: profile.id }).then(user => {
         if (user) {
           done(null, user);
@@ -69,7 +69,6 @@ passport.use(
       ]
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
       User.findOne({ facebookId: profile.id }).then(user => {
         if (user) {
           done(null, user);

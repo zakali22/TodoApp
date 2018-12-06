@@ -4,36 +4,19 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const session = require("express-session");
 const cookieSession = require("cookie-session");
 const path = require("path");
 const cors = require("cors");
 
 const keys = require("./config/keys");
 
-// Header 'Allow-origin'
-app.use(function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "*");
+const optionsCors = {
+  origin: "*",
+  optionSuccessStatus: 200
+};
 
-  // Request methods you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-
-  // Request headers you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader("Access-Control-Allow-Credentials", true);
-
-  // Pass to next layer of middleware
-  next();
-});
+app.use(cors(optionsCors));
 
 const url = keys.mongo_uri;
 mongoose.connect(
@@ -46,18 +29,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Cookie session
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days expiry
     keys: [keys.cookieKey]
   })
 );
-
-// Body parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 // Passport
 app.use(passport.initialize());

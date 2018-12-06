@@ -10,6 +10,7 @@ const App = props => {
     <Fragment>
       <Router>
         <Switch>
+          <Route exact path="/todo" component={Todo} />
           <Route exact path="/get-started" component={GetStarted} />
           <Route exact path="/" component={Homepage} />
         </Switch>

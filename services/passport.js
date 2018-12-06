@@ -6,17 +6,19 @@ const mongoose = require("mongoose");
 
 const User = mongoose.model("users");
 
-// Serialize and Deserialize
+// Serialization
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
+
+// Deserialization
 passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
     done(null, user);
   });
 });
 
-// GOOGLE
+// Verification and Creation of GOOGLE
 passport.use(
   new GoogleStrategy(
     {
@@ -33,21 +35,21 @@ passport.use(
         } else {
           new User({
             googleId: profile.id,
-            name: profile._json.displayName,
+            name: profile.displayName,
             image: profile._json.image.url,
             email: profile._json.emails[0].value,
             first_name: profile._json.name.givenName,
             last_name: profile._json.name.familyName
           })
             .save()
-            .then(user => done(null, user));
+            .then(user => {
+              done(null, user);
+            });
         }
       });
     }
   )
 );
-
-// FACEBOOK
 passport.use(
   new FacebookStrategy(
     {
@@ -81,7 +83,9 @@ passport.use(
             last_name: profile._json.name.familyName
           })
             .save()
-            .then(user => done(null, user));
+            .then(user => {
+              done(null, user);
+            });
         }
       });
     }

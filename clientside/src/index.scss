@@ -95,6 +95,9 @@ html {
     flex-direction: column;
     &__register {
       display: flex;
+      @media only screen and (max-width: 60em) {
+        flex-direction: column;
+      }
     }
   }
   h1 {
@@ -125,6 +128,9 @@ html {
         border-radius: 0.3125rem;
         color: white;
         font-family: "Roboto", sans-serif;
+        @media only screen and (min-width: 60em) and (max-width: 75em) {
+          min-width: 80%;
+        }
         p {
           margin: 0;
           font-size: 1rem;
@@ -175,6 +181,9 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @media only screen and (max-width: 60em) {
+      border: none;
+    }
   }
 }
 

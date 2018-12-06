@@ -10,13 +10,19 @@ const GetStarted = props => {
         <h1>Sign in</h1>
         <div className="container__register">
           <div className="getstarted__social">
-            <a className="getstarted__social--facebook">
+            <a
+              href="http://localhost:5000/auth/facebook"
+              className="getstarted__social--facebook"
+            >
               <button>
-                <i class="fab fa-facebook" />
+                <i className="fab fa-facebook" />
                 <p>Continue with Facebook</p>
               </button>
             </a>
-            <a className="getstarted__social--google">
+            <a
+              href="http://localhost:5000/auth/google"
+              className="getstarted__social--google"
+            >
               <button>
                 <img src={Google} />
                 <p>Continue with Google</p>

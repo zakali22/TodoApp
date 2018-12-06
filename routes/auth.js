@@ -8,7 +8,7 @@ module.exports = app => {
     "/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.redirect("/");
+      res.redirect("http://localhost:3000/todo");
     }
   );
   app.get(
@@ -19,13 +19,16 @@ module.exports = app => {
     "/auth/facebook/callback",
     passport.authenticate("facebook"),
     (req, res) => {
-      res.redirect("/");
+      res.redirect("http://localhost:3000/todo");
     }
   );
-  app.get("/api/current_user", (req, res) => {
-    res.send(req.user);
+  app.get("/auth/current_user", (req, res) => {
+    if (req.user) {
+      res.send(req.user);
+    }
   });
-  app.get("/api/logout", (req, res) => {
+  app.get("/auth/logout", (req, res) => {
     req.logout();
+    res.redirect("http://localhost:3000/");
   });
 };

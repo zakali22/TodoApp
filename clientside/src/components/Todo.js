@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Form from "./Form";
 import List from "./List";
 import moment from "moment";
+import axios from "axios";
+import { connect } from "react-redux";
+import * as actions from "../actions/authActions";
 
 class Todo extends Component {
   state = {
@@ -67,6 +70,7 @@ class Todo extends Component {
 
   componentDidMount() {
     this.liveClockInterval();
+    this.props.fetchUser();
   }
 
   render() {
@@ -106,4 +110,13 @@ class Todo extends Component {
   }
 }
 
-export default Todo;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Todo);

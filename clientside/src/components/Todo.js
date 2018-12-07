@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Form from "./Form";
 import List from "./List";
 import LoadTime from "./LoadTime";
+import Greeting from "./Greeting";
 import moment from "moment";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -72,7 +73,7 @@ class Todo extends Component {
         <div className="main">
           <div className="main__container">
             <div className="main__welcome">
-              <h2>Good Morning, {auth.name}</h2>
+              <Greeting name={auth.name} />
               <LoadTime />
             </div>
             <div className="main__todo">

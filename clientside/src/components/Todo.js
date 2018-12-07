@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Form from "./Form";
 import List from "./List";
+import LoadTime from "./LoadTime";
 import moment from "moment";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -9,8 +10,7 @@ import * as actions from "../actions/authActions";
 class Todo extends Component {
   state = {
     todos: [],
-    completed: [],
-    time: null
+    completed: []
   };
   onSubmitHandler = value => {
     const todos = [...this.state.todos];
@@ -60,53 +60,49 @@ class Todo extends Component {
     });
   };
 
-  liveClockInterval = () => {
-    setInterval(() => {
-      this.setState({
-        time: moment().format("LTS")
-      });
-    }, 1000);
-  };
-
   componentDidMount() {
-    this.liveClockInterval();
     this.props.fetchUser();
   }
 
-  render() {
-    return (
-      <div className="main">
-        <div className="main__container">
-          <div className="main__welcome">
-            <h2>Good Morning, Zack</h2>
-            <span className="main__welcome--time">
-              <p>Its {moment().format("MMMM Do YYYY")}</p>
-              <p>{this.state.time}</p>
-            </span>
-          </div>
-          <div className="main__todo">
-            <Form onSubmit={this.onSubmitHandler} />
-            {this.state.completed.length > 0 ? (
-              <List
-                todos={this.state.todos}
-                completedTodos={this.state.completed}
-                onDeleteComplete={this.onDeleteCompleteHandler}
-                onDelete={this.onDeleteHandler}
-                onEditHandler={this.onEditHandler}
-                addToComplete={this.onCompletionHandler}
-              />
-            ) : (
-              <List
-                todos={this.state.todos}
-                onDelete={this.onDeleteHandler}
-                onEditHandler={this.onEditHandler}
-                addToComplete={this.onCompletionHandler}
-              />
-            )}
+  renderOnUser = () => {
+    const auth = this.props.auth;
+    console.log(auth);
+    if (auth) {
+      return (
+        <div className="main">
+          <div className="main__container">
+            <div className="main__welcome">
+              <h2>Good Morning, {auth.name}</h2>
+              <LoadTime />
+            </div>
+            <div className="main__todo">
+              <Form onSubmit={this.onSubmitHandler} />
+              {this.state.completed.length > 0 ? (
+                <List
+                  todos={this.state.todos}
+                  completedTodos={this.state.completed}
+                  onDeleteComplete={this.onDeleteCompleteHandler}
+                  onDelete={this.onDeleteHandler}
+                  onEditHandler={this.onEditHandler}
+                  addToComplete={this.onCompletionHandler}
+                />
+              ) : (
+                <List
+                  todos={this.state.todos}
+                  onDelete={this.onDeleteHandler}
+                  onEditHandler={this.onEditHandler}
+                  addToComplete={this.onCompletionHandler}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
+  };
+
+  render() {
+    return <Fragment>{this.renderOnUser()}</Fragment>;
   }
 }
 

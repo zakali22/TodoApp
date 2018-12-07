@@ -6,59 +6,51 @@ import Greeting from "./Greeting";
 import moment from "moment";
 import axios from "axios";
 import { connect } from "react-redux";
-import * as actions from "../actions/authActions";
+import { fetchUser } from "../actions/authActions";
+import { add_todo, edit_todo, delete_todo } from "../actions/todoActions";
+import { delete_complete, complete_todo } from "../actions/completionActions";
+
+const actions = {
+  fetchUser,
+  add_todo,
+  edit_todo,
+  delete_todo,
+  delete_complete,
+  complete_todo
+};
 
 class Todo extends Component {
-  state = {
-    todos: [],
-    completed: []
-  };
   onSubmitHandler = value => {
-    const todos = [...this.state.todos];
+    const todos = [...this.props.todos];
     const todo = {
       createdAt: moment().calendar(),
       title: value
     };
-    this.setState({
-      todos: todos.concat(todo)
-    });
+    this.props.add_todo(todo);
   };
 
   onDeleteHandler = id => {
-    this.setState({
-      todos: this.state.todos.filter((todo, i) => i !== id)
-    });
+    this.props.delete_todo(id);
   };
 
   onDeleteCompleteHandler = id => {
-    this.setState({
-      completed: this.state.completed.filter((todo, i) => i !== id)
-    });
+    this.props.delete_complete(id);
   };
 
   onEditHandler = (index, value) => {
-    const todos = this.state.todos;
-    const indexEditAt = this.state.todos.find((todo, i) => i === index);
+    console.log(index);
+    const indexEditAt = this.props.todos.find((todo, i) => i === index);
     const newTodo = {
       ...indexEditAt,
       title: value
     };
-    this.setState({
-      todos: [
-        ...todos.slice(0, index),
-        newTodo,
-        ...todos.slice(index + 1, todos.length)
-      ]
-    });
+    this.props.edit_todo(index, newTodo);
   };
 
   onCompletionHandler = id => {
-    const indexCompleteAt = this.state.todos.find((todo, i) => i === id);
-    const completedTodos = [...this.state.completed];
-    this.setState({
-      todos: this.state.todos.filter((todo, i) => i !== id),
-      completed: completedTodos.concat(indexCompleteAt)
-    });
+    const completedTodo = this.props.todos.find((todo, i) => i === id);
+    const completedTodos = [...this.props.complete];
+    this.props.complete_todo(id, completedTodo);
   };
 
   componentDidMount() {
@@ -66,8 +58,8 @@ class Todo extends Component {
   }
 
   renderOnUser = () => {
-    const auth = this.props.auth;
-    console.log(auth);
+    const { auth, todos, complete } = this.props;
+    console.log(this.props);
     if (auth) {
       return (
         <div className="main">
@@ -78,10 +70,10 @@ class Todo extends Component {
             </div>
             <div className="main__todo">
               <Form onSubmit={this.onSubmitHandler} />
-              {this.state.completed.length > 0 ? (
+              {complete.length > 0 ? (
                 <List
-                  todos={this.state.todos}
-                  completedTodos={this.state.completed}
+                  todos={todos}
+                  completedTodos={complete}
                   onDeleteComplete={this.onDeleteCompleteHandler}
                   onDelete={this.onDeleteHandler}
                   onEditHandler={this.onEditHandler}
@@ -89,7 +81,7 @@ class Todo extends Component {
                 />
               ) : (
                 <List
-                  todos={this.state.todos}
+                  todos={todos}
                   onDelete={this.onDeleteHandler}
                   onEditHandler={this.onEditHandler}
                   addToComplete={this.onCompletionHandler}
@@ -109,7 +101,9 @@ class Todo extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    todos: state.todos,
+    complete: state.complete
   };
 };
 

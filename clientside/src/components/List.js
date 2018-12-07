@@ -53,6 +53,7 @@ class List extends Component {
   };
 
   render() {
+    console.log(this.props.todos);
     const completedList = this.props.completedTodos
       ? this.props.completedTodos.map((todo, i) => {
           return (

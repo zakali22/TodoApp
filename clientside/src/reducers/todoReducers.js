@@ -1,4 +1,5 @@
 import {
+  GET_TODOS,
   ADD_TODO,
   DELETE_TODO,
   EDIT_TODO,
@@ -8,6 +9,9 @@ import {
 export default function(state = [], action) {
   // state represents todos
   switch (action.type) {
+    case GET_TODOS:
+      return action.payload;
+      break;
     case ADD_TODO:
       return state.concat(action.payload);
       break;

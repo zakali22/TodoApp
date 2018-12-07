@@ -43,6 +43,7 @@ app.use(passport.session());
 require("./models/User");
 require("./services/passport");
 require("./routes/auth")(app);
+require("./routes/api")(app);
 
 const PORT = process.env.PORT | 5000;
 app.listen(PORT);

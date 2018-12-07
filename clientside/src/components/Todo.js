@@ -7,7 +7,12 @@ import moment from "moment";
 import axios from "axios";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions/authActions";
-import { add_todo, edit_todo, delete_todo } from "../actions/todoActions";
+import {
+  add_todo,
+  edit_todo,
+  delete_todo,
+  get_todos
+} from "../actions/todoActions";
 import { delete_complete, complete_todo } from "../actions/completionActions";
 
 const actions = {
@@ -15,11 +20,16 @@ const actions = {
   add_todo,
   edit_todo,
   delete_todo,
+  get_todos,
   delete_complete,
   complete_todo
 };
 
 class Todo extends Component {
+  state = {
+    todos: this.props.todos,
+    complete: this.props.complete
+  };
   onSubmitHandler = value => {
     const todos = [...this.props.todos];
     const todo = {
@@ -55,11 +65,18 @@ class Todo extends Component {
 
   componentDidMount() {
     this.props.fetchUser();
+    this.props.get_todos();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      todos: nextProps.todos,
+      complete: nextProps.complete
+    });
   }
 
   renderOnUser = () => {
     const { auth, todos, complete } = this.props;
-    console.log(this.props);
     if (auth) {
       return (
         <div className="main">

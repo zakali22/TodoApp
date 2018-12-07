@@ -220,6 +220,12 @@ html {
       font-size: 2.5rem;
       color: white;
       margin-bottom: 0.5rem;
+      @media only screen and (max-width: 81.25em) {
+        font-size: 2rem;
+      }
+      @media only screen and (max-width: 66.875em) {
+        font-size: 1.8rem;
+      }
     }
     p {
       @media only screen and (max-width: 50em) {

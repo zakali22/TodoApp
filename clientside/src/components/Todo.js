@@ -13,7 +13,11 @@ import {
   delete_todo,
   get_todos
 } from "../actions/todoActions";
-import { delete_complete, complete_todo } from "../actions/completionActions";
+import {
+  delete_complete,
+  complete_todo,
+  get_complete
+} from "../actions/completionActions";
 
 const actions = {
   fetchUser,
@@ -22,7 +26,8 @@ const actions = {
   delete_todo,
   get_todos,
   delete_complete,
-  complete_todo
+  complete_todo,
+  get_complete
 };
 
 class Todo extends Component {
@@ -66,6 +71,7 @@ class Todo extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.get_todos();
+    this.props.get_complete();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -76,7 +82,8 @@ class Todo extends Component {
   }
 
   renderOnUser = () => {
-    const { auth, todos, complete } = this.props;
+    const { auth } = this.props;
+    const { todos, complete } = this.state;
     if (auth) {
       return (
         <div className="main">

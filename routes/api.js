@@ -32,4 +32,20 @@ module.exports = app => {
       );
     });
   });
+  app.put("/api/edit_todo/:id", (req, res) => {
+    const updateTodo = req.body.todo;
+    User.findOne({ _id: req.user._id }).then(user => {
+      const todos = user.todos;
+      const newTodos = [
+        ...todos.slice(0, req.params.id),
+        updateTodo,
+        ...todos.slice(req.params.id + 1, todos.length)
+      ];
+      User.updateOne({ _id: req.user._id }, { $set: { todos: newTodos } }).then(
+        response => {
+          res.send(user.todos);
+        }
+      );
+    });
+  });
 };

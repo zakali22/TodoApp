@@ -30,11 +30,13 @@ export const delete_todo = id => async dispatch => {
 };
 
 export const edit_todo = (id, todo) => async dispatch => {
+  const res = await axios.put(`/api/edit_todo/${id}`, {
+    todo
+  });
   const data = {
     todo,
     id
   };
-  console.log(data);
   dispatch({
     type: EDIT_TODO,
     payload: data

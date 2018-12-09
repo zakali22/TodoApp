@@ -6,6 +6,8 @@ import Greeting from "./Greeting";
 import moment from "moment";
 import axios from "axios";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+
 import { fetchUser } from "../actions/authActions";
 import {
   add_todo,

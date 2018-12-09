@@ -12,6 +12,10 @@ body {
   font-family: "Ubuntu", sans-serif;
 }
 
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
 html {
   // 1rem = 16px
   @media only screen and (max-width: 62.5em) {
@@ -19,6 +23,54 @@ html {
   }
   @media only screen and (max-width: 50em) {
     font-size: 62.5%; // 1rem = 10px
+  }
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+  &__nav {
+    display: flex;
+    align-items: center;
+    &--left {
+      margin-right: auto;
+      font-size: 1.4rem;
+      font-family: "Lato", sans-serif;
+      color: white;
+    }
+    &--right {
+      display: flex;
+      align-items: center;
+      button {
+        padding: 0.5rem 1rem;
+        background: none;
+        color: white;
+        cursor: pointer;
+        outline: none;
+      }
+      .signup {
+        margin-right: 0.7rem;
+        border: 1px solid orange;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: orange;
+        }
+      }
+      .login {
+        border: 1px solid #4caf50;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: #4caf50;
+        }
+      }
+    }
   }
 }
 

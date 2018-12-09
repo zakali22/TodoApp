@@ -17,7 +17,7 @@ class Homepage extends Component {
             </p>
           </div>
           <div className="homepage__register">
-            <Link to="/get-started">
+            <Link to="/register">
               <button>Get started</button>
             </Link>
           </div>

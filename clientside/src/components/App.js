@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import Homepage from "./Homepage";
 import Header from "./Header";
 import Todo from "./Todo";
-import GetStarted from "./GetStarted";
+import Signin from "./Signin";
+import Register from "./Register";
 
 const App = props => {
   return (
@@ -13,7 +14,8 @@ const App = props => {
         <Header />
         <Switch>
           <Route exact path="/todo" component={Todo} />
-          <Route exact path="/get-started" component={GetStarted} />
+          <Route exact path="/sigin" component={Signin} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/" component={Homepage} />
         </Switch>
       </Fragment>

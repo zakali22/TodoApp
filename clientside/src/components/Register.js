@@ -10,9 +10,7 @@ class Register extends Component {
     step: 1,
     first_name: "",
     last_name: "",
-    email: "",
-    password: "",
-    confirm_password: ""
+    email: ""
   };
 
   nextStep = () => {
@@ -57,7 +55,7 @@ class Register extends Component {
         );
         break;
       case 3:
-        return <Redirect to={"/todo"} />;
+        return <Redirect to={"/signin"} />;
     }
   };
 

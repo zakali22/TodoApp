@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import Google from "../Google.png";
 import FormUserDetails from "./FormUserDetails";
 import FormUserPasswords from "./FormUserPasswords";
+import axios from "axios";
 
 class Register extends Component {
   state = {
@@ -32,8 +33,8 @@ class Register extends Component {
   };
 
   renderForm = () => {
-    const { first_name, last_name, email, password } = this.state;
-    const values = { first_name, last_name, email, password };
+    const { first_name, last_name, email } = this.state;
+    const values = { first_name, last_name, email };
     switch (this.state.step) {
       case 1:
         return (
@@ -63,7 +64,7 @@ class Register extends Component {
     return (
       <div className="getstarted">
         <div className="container">
-          <h1>Sign in</h1>
+          <h1>Sign up</h1>
           <div className="container__register">
             <div className="getstarted__social">
               <a

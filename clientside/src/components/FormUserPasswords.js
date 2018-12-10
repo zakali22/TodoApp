@@ -6,7 +6,7 @@ const errorStyle = {
 };
 
 const style = {
-  borderBottom: "1px solid #4385f5"
+  borderBottom: "1px solid green"
 };
 
 class FormUserPasswords extends React.Component {

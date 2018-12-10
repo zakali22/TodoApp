@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 class Header extends Component {
   renderHeader = () => {
     if (this.props.auth) {
-      return <button>Logout</button>;
+      return (
+        <button>
+          <a href="/auth/logout">Logout</a>
+        </button>
+      );
     } else {
       return (
         <Fragment>

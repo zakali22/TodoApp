@@ -8,6 +8,7 @@ const session = require("express-session");
 const cookieSession = require("cookie-session");
 const path = require("path");
 const cors = require("cors");
+const expressValidator = require("express-validator");
 
 const keys = require("./config/keys");
 
@@ -33,6 +34,34 @@ app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days expiry
     keys: [keys.cookieKey]
+  })
+);
+
+// Express Messages
+app.use(require("connect-flash")());
+app.use((req, res, next) => {
+  res.locals.messages = require("express-messages")(req, res);
+  res.locals.user = req.user || null;
+  next();
+});
+
+app.use(
+  expressValidator({
+    errorFormatter: function(param, msg, value) {
+      const namespace = param.split("."),
+        root = namespace.shift(),
+        formParam = root;
+
+      while (namespace.length) {
+        formParam += "[" + namespace.shift() + "]";
+      }
+
+      return {
+        param: formParam,
+        msg: msg,
+        value: value
+      };
+    }
   })
 );
 

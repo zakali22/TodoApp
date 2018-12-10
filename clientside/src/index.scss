@@ -233,6 +233,34 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    &--form {
+      display: flex;
+      flex-direction: column;
+      input {
+        margin-bottom: 1rem;
+        padding: 0.5rem 0;
+        border: none;
+        border-bottom: 2px solid $lightgrey;
+        transition: all 0.2s ease-in-out;
+        &:focus {
+          outline: none;
+          border-bottom: 2px solid $google-color;
+        }
+      }
+      button {
+        border: 1px solid $google-color;
+        cursor: pointer;
+        background: none;
+        padding: 0.5rem 1rem;
+        color: $text-color;
+        transition: all 0.2s ease-in-out;
+        margin-bottom: 1rem;
+        &:hover {
+          color: white;
+          background: $google-color;
+        }
+      }
+    }
     @media only screen and (max-width: 60em) {
       border: none;
     }

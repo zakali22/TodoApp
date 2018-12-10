@@ -14,7 +14,7 @@ const App = props => {
         <Header />
         <Switch>
           <Route exact path="/todo" component={Todo} />
-          <Route exact path="/sigin" component={Signin} />
+          <Route exact path="/signin" component={Signin} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/" component={Homepage} />
         </Switch>

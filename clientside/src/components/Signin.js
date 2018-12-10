@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Google from "../Google.png";
 
-const GetStarted = props => {
+const Signin = props => {
   return (
     <div className="getstarted">
       <div className="container">
@@ -30,7 +30,7 @@ const GetStarted = props => {
             </a>
           </div>
           <div className="getstarted__local">
-            <h1>Local signing </h1>
+            <h1>Local signing in </h1>
           </div>
         </div>
       </div>
@@ -38,4 +38,4 @@ const GetStarted = props => {
   );
 };
 
-export default GetStarted;
+export default Signin;

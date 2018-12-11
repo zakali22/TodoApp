@@ -1,6 +1,8 @@
 const passport = require("passport");
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const User = mongoose.model("users");
+
 module.exports = app => {
   app.get(
     "/auth/google",
@@ -39,7 +41,6 @@ module.exports = app => {
   };
 
   app.post("/auth/checkPersonal", (req, res) => {
-    console.log(req.body);
     req.checkBody("first_name", "First name is required").notEmpty();
     req.checkBody("last_name", "Last name is required").notEmpty();
     req.checkBody("email", "Email is required").notEmpty();
@@ -57,6 +58,37 @@ module.exports = app => {
           res.send({ success: "Continue" });
         }
       });
+    }
+  });
+  app.post("/auth/addUser", (req, res) => {
+    console.log(req.body);
+    req.checkBody("password", "Password is required").notEmpty();
+    req
+      .checkBody("password", "Password must be at least 5 characters")
+      .isLength({ min: 5 });
+    req
+      .checkBody("confirm_password", "Passwords do not match")
+      .equals(req.body.password);
+
+    let errors = req.validationErrors();
+    if (errors) {
+      console.log(errors);
+      res.send({ error: errors });
+    } else {
+      const user = new User({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: req.body.password,
+        name: `${req.body.first_name} ${req.body.last_name}`
+      });
+      registerUser(user, (err, user) => {
+        console.log(user);
+        if (err) {
+          console.log(err);
+        }
+      });
+      res.send({ success: "Successfully registered" });
     }
   });
   app.get("/auth/current_user", (req, res) => {

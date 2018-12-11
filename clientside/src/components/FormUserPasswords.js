@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 const errorStyle = {
   borderBottom: "1px solid red"
@@ -9,22 +10,34 @@ const style = {
   borderBottom: "1px solid green"
 };
 
-class FormUserPasswords extends React.Component {
+class FormUserPasswords extends Component {
   state = {
     password: "",
     confirm_password: "",
-    matched: false
+    matched: false,
+    password_length: false,
+    errors: []
   };
 
   onChange = e => {
     const { password, confirm_password } = this.state;
-    if (password.trim() === e.target.value) {
+
+    if (e.target.value.length >= 5) {
       this.setState({
-        matched: true
+        password_length: true
       });
+      if (password.trim() === e.target.value) {
+        this.setState({
+          matched: true
+        });
+      } else {
+        this.setState({
+          matched: false
+        });
+      }
     } else {
       this.setState({
-        matched: false
+        password_length: false
       });
     }
     this.setState({
@@ -33,8 +46,27 @@ class FormUserPasswords extends React.Component {
   };
 
   continue = e => {
+    const { password, confirm_password } = this.state;
+    const { first_name, last_name, email } = this.props.values;
     e.preventDefault();
-    this.props.nextStep();
+    axios
+      .post("/auth/addUser", {
+        first_name,
+        last_name,
+        email,
+        password,
+        confirm_password
+      })
+      .then(response => {
+        if (response.data.success) {
+          this.props.nextStep();
+        } else {
+          console.log(response.data);
+          this.setState({
+            errors: response.data.error
+          });
+        }
+      });
   };
 
   back = e => {
@@ -44,28 +76,42 @@ class FormUserPasswords extends React.Component {
 
   render() {
     const { values, onChange } = this.props;
-    const { matched } = this.state;
+    const { matched, password_length } = this.state;
+    const errorLists =
+      this.state.errors.length > 0
+        ? this.state.errors.map((error, i) => {
+            return (
+              <li key={i} className="error-list--item">
+                {error.msg}
+              </li>
+            );
+          })
+        : null;
     return (
-      <form className="getstarted__local--form">
-        <input
-          type="password"
-          value={values.password}
-          placeholder="Password"
-          name="password"
-          onChange={this.onChange}
-        />
-        <input
-          type="password"
-          style={matched ? style : errorStyle}
-          value={values.confirm_password}
-          placeholder="Confirm password"
-          name="confirm_password"
-          onChange={this.onChange}
-        />
+      <Fragment>
+        <ul className="error-list">{errorLists}</ul>
+        <form className="getstarted__local--form">
+          <input
+            type="password"
+            style={password_length ? style : errorStyle}
+            value={values.password}
+            placeholder="Password"
+            name="password"
+            onChange={this.onChange}
+          />
+          <input
+            type="password"
+            style={matched ? style : errorStyle}
+            value={values.confirm_password}
+            placeholder="Confirm password"
+            name="confirm_password"
+            onChange={this.onChange}
+          />
 
-        <button onClick={this.back}>Back</button>
-        <button onClick={this.continue}>Next</button>
-      </form>
+          <button onClick={this.back}>Back</button>
+          <button onClick={this.continue}>Next</button>
+        </form>
+      </Fragment>
     );
   }
 }

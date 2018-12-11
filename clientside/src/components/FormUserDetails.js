@@ -26,13 +26,16 @@ class FormUserDetails extends Component {
 
   render() {
     const { values, onChange } = this.props;
-    const errorLists = this.state.errors.map((error, i) => {
-      return (
-        <li key={i} className="error-list--item">
-          {error.msg}
-        </li>
-      );
-    });
+    const errorLists =
+      this.state.errors.length > 0
+        ? this.state.errors.map((error, i) => {
+            return (
+              <li key={i} className="error-list--item">
+                {error.msg}
+              </li>
+            );
+          })
+        : null;
     return (
       <Fragment>
         <ul className="error-list">{errorLists}</ul>

@@ -6,6 +6,7 @@ import FormSignin from "./FormSignin";
 
 class Signin extends Component {
   render() {
+    console.log(this.props);
     return (
       <div className="getstarted">
         <div className="container">
@@ -33,7 +34,7 @@ class Signin extends Component {
             </div>
             <div className="getstarted__local">
               <div className="container">
-                <FormSignin />
+                <FormSignin history={this.props.history} />
               </div>
             </div>
           </div>

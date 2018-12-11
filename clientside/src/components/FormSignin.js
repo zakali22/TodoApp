@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 class FormSignin extends Component {
   state = {
@@ -15,6 +16,7 @@ class FormSignin extends Component {
     axios.post("/auth/logUser", { email, password }).then(response => {
       if (response.data.success) {
         console.log(response.data);
+        this.props.history.push("/todo");
       } else {
         console.log(response.data);
         this.setState({

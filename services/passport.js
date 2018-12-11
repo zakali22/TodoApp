@@ -45,7 +45,7 @@ passport.use(
           return done(null, false, { message: "User does not exist" });
         }
         comparePassword(password, user.password, (err, isMatch) => {
-          if (err) throw err;
+          if (err) console.log(err);
           if (isMatch) {
             return done(null, user);
           } else {

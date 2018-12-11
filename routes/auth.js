@@ -91,6 +91,24 @@ module.exports = app => {
       res.send({ success: "Successfully registered" });
     }
   });
+  app.post("/auth/logUser", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.send([info]);
+      }
+      req.logIn(user, function(err) {
+        console.log(user);
+        if (err) {
+          return next(err);
+        }
+        console.log(user);
+        return res.send({ success: "Successfully logged in" });
+      });
+    })(req, res, next);
+  });
   app.get("/auth/current_user", (req, res) => {
     console.log(`here is the actual request object user ${req.user}`);
     if (req.user) {

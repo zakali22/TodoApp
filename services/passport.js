@@ -25,27 +25,36 @@ passport.deserializeUser((id, done) => {
 
 const comparePassword = (userPass, hash, callback) => {
   bcrypt.compare(userPass, hash, (err, isMatch) => {
-    if (err) throw err;
+    if (err) {
+      console.log(err);
+    }
     callback(null, isMatch);
   });
 };
 
 passport.use(
-  new LocalStrategy((email, password, done) => {
-    User.findOne({ email }).then(user => {
-      if (!user) {
-        return done(null, false, { message: "User does not exist" });
-      }
-      comparePassword(password, user.password, (err, isMatch) => {
-        if (err) throw err;
-        if (isMatch) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: "Password is incorrect" });
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password"
+    },
+    (username, password, done) => {
+      User.findOne({ email: username }).then(user => {
+        console.log(user);
+        if (!user) {
+          return done(null, false, { message: "User does not exist" });
         }
+        comparePassword(password, user.password, (err, isMatch) => {
+          if (err) throw err;
+          if (isMatch) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: "Password is incorrect" });
+          }
+        });
       });
-    });
-  })
+    }
+  )
 );
 
 // Verification and Creation of GOOGLE

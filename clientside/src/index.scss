@@ -51,9 +51,17 @@ html {
       button {
         padding: 0.5rem 1rem;
         background: none;
+        border: none;
         color: white;
         cursor: pointer;
         outline: none;
+      }
+      .signup,
+      .login {
+        a:-webkit-any-link {
+          color: white;
+          text-decoration: none;
+        }
       }
       .signup {
         margin-right: 0.7rem;
@@ -158,6 +166,14 @@ html {
     flex-direction: column;
     &__register {
       display: flex;
+      margin-top: 3rem;
+      #divider {
+        display: none;
+        text-align: center;
+        @media only screen and (max-width: 60em) {
+          display: block;
+        }
+      }
       @media only screen and (max-width: 60em) {
         flex-direction: column;
       }

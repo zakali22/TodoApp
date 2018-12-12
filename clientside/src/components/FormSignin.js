@@ -43,10 +43,15 @@ class FormSignin extends Component {
               </li>
             );
           })
-        : null;
+        : [];
     return (
       <Fragment>
-        <ul className="error-list">{errorLists}</ul>
+        <ul
+          className="error-list"
+          style={{ display: errorLists.length === 0 ? "none" : "block" }}
+        >
+          {errorLists}
+        </ul>
         <form className="getstarted__local--form">
           <input
             value={email}

@@ -86,6 +86,7 @@ class Register extends Component {
                 </button>
               </a>
             </div>
+            <p id="divider">or</p>
             <div className="getstarted__local">
               <div className="container">{this.renderForm()}</div>
             </div>

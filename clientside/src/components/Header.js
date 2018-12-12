@@ -14,8 +14,12 @@ class Header extends Component {
     } else {
       return (
         <Fragment>
-          <button className="signup">Signup</button>
-          <button className="login">Login</button>
+          <Link className="signup" to={"/register"}>
+            <button>Signup</button>
+          </Link>
+          <Link to={"/signin"} className="login">
+            <button>Login</button>
+          </Link>
         </Fragment>
       );
     }

@@ -32,6 +32,7 @@ class Signin extends Component {
                 </button>
               </a>
             </div>
+            <p id="divider">or</p>
             <div className="getstarted__local">
               <div className="container">
                 <FormSignin history={this.props.history} />

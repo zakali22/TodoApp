@@ -16,6 +16,7 @@ class FormUserPasswords extends Component {
     confirm_password: "",
     matched: false,
     password_length: false,
+    containsNum: false,
     errors: []
   };
 
@@ -26,6 +27,15 @@ class FormUserPasswords extends Component {
       this.setState({
         password_length: true
       });
+      if (/\d/.test(e.target.value)) {
+        this.setState({
+          containsNum: true
+        });
+      } else {
+        this.setState({
+          containsNum: false
+        });
+      }
       if (password.trim() === e.target.value) {
         this.setState({
           matched: true
@@ -76,7 +86,11 @@ class FormUserPasswords extends Component {
 
   render() {
     const { values, onChange } = this.props;
-    const { matched, password_length } = this.state;
+    const { matched, password_length, containsNum } = this.state;
+    let errors;
+    if (!containsNum || !password_length) {
+      errors = errorStyle;
+    }
     const errorLists =
       this.state.errors.length > 0
         ? this.state.errors.map((error, i) => {
@@ -98,7 +112,7 @@ class FormUserPasswords extends Component {
         <form className="getstarted__local--form">
           <input
             type="password"
-            style={password_length ? style : errorStyle}
+            style={errors}
             value={values.password}
             placeholder="Password"
             name="password"

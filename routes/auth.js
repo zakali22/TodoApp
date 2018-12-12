@@ -64,6 +64,9 @@ module.exports = app => {
     console.log(req.body);
     req.checkBody("password", "Password is required").notEmpty();
     req
+      .checkBody("password", "Password must contain a number")
+      .matches("[0-9]");
+    req
       .checkBody("password", "Password must be at least 5 characters")
       .isLength({ min: 5 });
     req

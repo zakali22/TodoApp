@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Homepage extends Component {
+  componentDidMount() {
+    if (this.props.auth) {
+      this.props.history.push("/todo");
+    }
+  }
   render() {
     return (
       <div className="homepage">
@@ -27,4 +33,13 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(Homepage);

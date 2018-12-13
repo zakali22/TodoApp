@@ -7,9 +7,9 @@ class Header extends Component {
   renderHeader = () => {
     if (this.props.auth) {
       return (
-        <button>
-          <a href="/auth/logout">Logout</a>
-        </button>
+        <a href="/auth/logout">
+          <button>Logout</button>
+        </a>
       );
     } else {
       return (

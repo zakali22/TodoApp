@@ -1,8 +1,8 @@
 module.exports = {
-  googleClientID: process.env.googleClientID,
-  googleClientSecret: process.env.googleClientSecret,
-  facebookClientID: process.env.facebookClientID,
-  facebookClientSecret: process.env.facebookClientSecret,
-  mongo_uri: process.env.mongo_uri,
-  cookieKey: process.env.cookieKey
+  googleClientID: process.env.GOOGLE_CLIENT_ID,
+  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  facebookKey: process.env.FACEBOOK_CLIENT_ID,
+  facebookSecret: process.env.FACEBOOK_CLIENT_SECRET,
+  mongo_uri: process.env.MONGO_URI,
+  cookieKey: process.env.COOKIE_KEY
 };

@@ -20,7 +20,7 @@ const optionsCors = {
 
 app.use(cors(optionsCors));
 
-const url = keys.mongo_uri;
+const url = "mongodb://zakali1:London1@ds225442.mlab.com:25442/todoreact";
 mongoose.connect(
   url,
   {

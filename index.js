@@ -14,7 +14,7 @@ const keys = require("./config/keys");
 require("dotenv").config({ path: ".env" });
 
 const optionsCors = {
-  origin: "*",
+  origin: "https://protected-peak-30704.herokuapp.com/",
   optionSuccessStatus: 200
 };
 

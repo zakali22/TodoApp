@@ -6,6 +6,9 @@ import Header from "./Header";
 import Todo from "./Todo";
 import Signin from "./Signin";
 import Register from "./Register";
+import NotFound from "./NotFound";
+import { connect } from "react-redux";
+import PropsRoute from "./routeHelper";
 
 const App = props => {
   return (
@@ -13,14 +16,24 @@ const App = props => {
       <Fragment>
         <Header />
         <Switch>
-          <Route exact path="/todo" component={Todo} />
-          <Route exact path="/signin" component={Signin} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/" component={Homepage} />
+          <PropsRoute exact path="/todo" component={Todo} />
+          <PropsRoute exact path="/signin" component={Signin} />
+          <PropsRoute exact path="/register" component={Register} />
+          <PropsRoute exact path="/" component={Homepage} auth={props.auth} />
+          <PropsRoute component={NotFound} />
         </Switch>
       </Fragment>
     </Router>
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(App);

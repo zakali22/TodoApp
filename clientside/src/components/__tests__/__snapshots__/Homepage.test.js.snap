@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Homepage has a valid snapshot 1`] = `
+<div
+  className="homepage"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="homepage__welcome"
+    >
+      <h1>
+        Organize your tasks with simple 
+        <span>
+          todos
+        </span>
+      </h1>
+      <p>
+        No more fancy and hard to navigate UI's. 
+        <span>
+          Just todo it
+        </span>
+        .
+      </p>
+    </div>
+    <div
+      className="homepage__register"
+    >
+      <a
+        href="/register"
+        onClick={[Function]}
+      >
+        <button>
+          Get started
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+`;

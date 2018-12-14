@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 class Homepage extends Component {
   componentDidMount() {
@@ -33,13 +32,4 @@ class Homepage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    auth: state.auth
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(Homepage);
+export default Homepage;

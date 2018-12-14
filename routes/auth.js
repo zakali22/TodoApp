@@ -12,7 +12,7 @@ module.exports = app => {
     "/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.redirect("http://localhost:3000/todo");
+      res.redirect("/todo");
     }
   );
   app.get(
@@ -23,7 +23,7 @@ module.exports = app => {
     "/auth/facebook/callback",
     passport.authenticate("facebook"),
     (req, res) => {
-      res.redirect("http://localhost:3000/todo");
+      res.redirect("/todo");
     }
   );
 

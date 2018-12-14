@@ -1,1 +1,6 @@
-module.exports = require("./dev.js");
+// Logic to determine the keys
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./prod");
+} else {
+  module.exports = require("./dev.js");
+}

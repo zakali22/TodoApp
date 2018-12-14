@@ -11,7 +11,7 @@ const cors = require("cors");
 const expressValidator = require("express-validator");
 
 const keys = require("./config/keys");
-require("dotenv").config();
+require("dotenv").config({ path: ".env" });
 
 const optionsCors = {
   origin: "*",

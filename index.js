@@ -23,7 +23,15 @@ app.use(cors(optionsCors));
 const url = keys.mongo_uri;
 mongoose.connect(
   url,
-  { useNewUrlParser: true }
+  {
+    useNewUrlParser: true
+  },
+  function(err, client) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(url);
+  }
 );
 
 // Body parser

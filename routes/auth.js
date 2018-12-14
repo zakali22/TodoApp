@@ -12,7 +12,7 @@ module.exports = app => {
     "/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.redirect("https://protected-peak-30704.herokuapp.com/");
+      res.redirect("https://protected-peak-30704.herokuapp.com/todo");
     }
   );
   app.get(
@@ -23,7 +23,7 @@ module.exports = app => {
     "/auth/facebook/callback",
     passport.authenticate("facebook"),
     (req, res) => {
-      res.redirect("https://protected-peak-30704.herokuapp.com/");
+      res.redirect("https://protected-peak-30704.herokuapp.com/todo");
     }
   );
 

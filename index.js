@@ -74,5 +74,31 @@ require("./services/passport");
 require("./routes/auth")(app);
 require("./routes/api")(app);
 
+// Conditional Production environment
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("clientside/build"));
+  const path = require("path");
+  app.get("/", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/todo", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/signin", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+  app.get("/register", (req, res) => {
+    res.sendFile(
+      path.resolve(process.env.PWD, "clientside", "build", "index.html")
+    );
+  });
+}
+
 const PORT = process.env.PORT | 5000;
 app.listen(PORT);

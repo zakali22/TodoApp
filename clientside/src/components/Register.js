@@ -26,9 +26,9 @@ class Register extends Component {
     });
   };
 
-  onChange = value => e => {
+  onChange = e => {
     this.setState({
-      [value]: e.target.value
+      [e.target.name]: e.target.value
     });
   };
 

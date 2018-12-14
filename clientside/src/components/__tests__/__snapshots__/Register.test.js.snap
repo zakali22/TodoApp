@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register has a valid snapshot 1`] = `
+<div
+  className="getstarted"
+>
+  <div
+    className="container"
+  >
+    <h1>
+      Sign up
+    </h1>
+    <div
+      className="container__register"
+    >
+      <div
+        className="getstarted__social"
+      >
+        <a
+          className="getstarted__social--facebook"
+          href="http://localhost:5000/auth/facebook"
+        >
+          <button>
+            <i
+              className="fab fa-facebook"
+            />
+            <p>
+              Continue with Facebook
+            </p>
+          </button>
+        </a>
+        <a
+          className="getstarted__social--google"
+          href="http://localhost:5000/auth/google"
+        >
+          <button>
+            <img
+              src="Google.png"
+            />
+            <p>
+              Continue with Google
+            </p>
+          </button>
+        </a>
+      </div>
+      <p
+        id="divider"
+      >
+        or
+      </p>
+      <div
+        className="getstarted__local"
+      >
+        <div
+          className="container"
+        >
+          <ul
+            className="error-list"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          />
+          <form
+            className="getstarted__local--form"
+          >
+            <input
+              name="first_name"
+              onChange={[Function]}
+              placeholder="First name"
+              value=""
+            />
+            <input
+              name="last_name"
+              onChange={[Function]}
+              placeholder="Last name"
+              value=""
+            />
+            <input
+              name="email"
+              onChange={[Function]}
+              placeholder="Email"
+              value=""
+            />
+            <button
+              onClick={[Function]}
+            >
+              Next
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

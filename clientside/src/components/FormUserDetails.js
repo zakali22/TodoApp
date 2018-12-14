@@ -24,8 +24,12 @@ class FormUserDetails extends Component {
       });
   };
 
+  onChange = e => {
+    this.props.onChange(e);
+  };
+
   render() {
-    const { values, onChange } = this.props;
+    const { values } = this.props;
     const errorLists =
       this.state.errors.length > 0
         ? this.state.errors.map((error, i) => {
@@ -49,19 +53,19 @@ class FormUserDetails extends Component {
             value={values.first_name}
             placeholder="First name"
             name="first_name"
-            onChange={onChange("first_name")}
+            onChange={this.onChange}
           />
           <input
             value={values.last_name}
             placeholder="Last name"
             name="last_name"
-            onChange={onChange("last_name")}
+            onChange={this.onChange}
           />
           <input
             value={values.email}
             placeholder="Email"
             name="email"
-            onChange={onChange("email")}
+            onChange={this.onChange}
           />
           <button onClick={this.continue}>Next</button>
         </form>

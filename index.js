@@ -57,9 +57,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days expiry
-    keys: [keys.cookieKey]
+  session({
+    secret: "abcdefg",
+    resave: true,
+    saveUninitialized: false
   })
 );
 
